@@ -24,12 +24,12 @@
         </div>
         <div class="other">
             <a href="#" class="reg">注册</a>
-            <a href="#" class="fogot">忘记密码</a>
+            <!-- | <a href="#" class="fogot">忘记密码</a> -->
         </div>
     </div>
 </div>
 
-<div class="register">
+<div class="register" style="display: none;">
     <h1>chunsun register</h1>
     <div class="loginform" id="regform">
         <div>
@@ -46,11 +46,14 @@
         </div>
         <div>
             <label for="regVcode">验证码</label>
-            <img id="checkpic" src='createcode.php' />
+            <img id="checkpic" src='vcodecreate.php' />
             <input type="text" id="regVcode" name="regVcode" value="" placeholder="请输入验证码">
         </div>
         <div class="btnbar">
             <button id="regSubmit">注册</button>
+        </div>
+        <div class="other">
+            <a href="#" class="cancelreg">取消</a>
         </div>
     </div>
 </div>

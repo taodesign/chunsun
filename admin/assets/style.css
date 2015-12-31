@@ -61,4 +61,6 @@ footer {margin-top: 20px; padding: 50px 0 0; border-top: 1px solid #ccc; text-al
 .loginform div input {width: 100%; padding: 0; text-indent: 5px; border-color: #ccc; line-height: 2em;}
 .loginform button {width: 100%; line-height: 1.8em;}
 
+.loginform .other {text-align: center; color: #ccc;}
+
 .pager {text-align: right; height: 30px; border-top: 1px dashed #ccc; padding: 20px 20px 0;}

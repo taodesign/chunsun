@@ -85,6 +85,17 @@ $(document).ready(function(){
     })
 
     //register
+    $('#loginform').on('click', '.reg', function (e){
+        e.preventDefault();
+        $('.login').hide();
+        $('.register').show();
+    });
+
+    $('#regform').on('click', '.cancelreg', function (e){
+        e.preventDefault();
+        $('.register').hide();
+        $('.login').show();
+    });
     $('#regform').on('click', '#showRegPw', function (e){
         e.preventDefault();
         var $this = $(this);
@@ -114,19 +125,26 @@ $(document).ready(function(){
         var regPw = $("input[name='regPw']").val();
         var regVcode = $("input[name='regVcode']").val();
 
-        $.post("register.php",{
-            regName:regName,
-            regMail:regMail,
-            regPw:regPw,
-            codeinput:regVcode
-        }, function(data){
+        $.post("vcodecheck.php",{codeinput:regVcode}, function(data){
             data = JSON.parse(data);//将字符串转换为json对象
-            console.log(data);
-            if (data.vcode == 'match') {
-                console.log('用户名密码正确！')
+            if (data.vcode != 'match') {
+                alert('验证码填写错误！');
             }else{
-                console.log('用户名密码错误！')
-            };
+                $.post("register.php",{
+                    regName:regName,
+                    regMail:regMail,
+                    regPw:regPw
+                }, function(data){
+                    data = JSON.parse(data);//将字符串转换为json对象
+                    //console.log(data);
+                    if (data.msg == 'success') {
+                        alert('注册成功！');
+                    }else{
+                        alert('注册失败，请重试！');
+                    }
+                });
+            }
+
         });
     });
 

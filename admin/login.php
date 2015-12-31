@@ -2,7 +2,7 @@
 require_once '../config.php';
 
 $name = $_POST["name"];
-$postpw = $_POST["passwd"];
+$postpw = md5($_POST["passwd"]);
 
 $queryUser = mysql_query("select * from users where name='$name' and passwd='$postpw'");
 if (mysql_num_rows($queryUser)){

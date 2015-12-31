@@ -4,18 +4,18 @@ require_once '../config.php';
 //post data
 $regName = $_POST['regName'];
 $regMail = $_POST['regMail'];
-$regPw = $_POST['regPw'];
-$codeval = md5($_POST['codeinput']);
+$regPw = md5($_POST['regPw']);
 
-//SESSION
-session_start();
-$sCodeval = $_SESSION['verification'];
+$sql="INSERT INTO `users` (`name`,`email`,`passwd`,`logtime`,`usergroup`) VALUES ('$regName','$regMail','$regPw',now(),'reader')";
 
-if($codeval == $sCodeval){
-    $jsArr = array('vcode'=>'match');
+$result = mysql_query($sql,$con);
+
+if($result){
+    $jsArr = array('msg'=>'success', 'type'=>'reg');
     echo json_encode($jsArr);
 }else{
-    $jsArr = array('vcode'=>'error');
-    echo json_encode($jsArr);
+    echo mysql_error();
 }
+
+mysql_close($con);
 ?>
