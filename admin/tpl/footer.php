@@ -1,0 +1,5 @@
+</mian>
+
+<footer>
+    &copy; 2015
+</footer>

@@ -1,0 +1,64 @@
+html, body {margin: 0;padding: 0; height: 100%;}
+a {color: #2E8B57; text-decoration: none;}
+
+ul{list-style: none;}
+li{margin: 0 0 10px;}
+
+input[type=text],input[type=password] { border: 1px solid #999; font-size: 18px; padding: 3px;}
+button {font-size: 20px;}
+
+nav {
+    width: 160px;
+    float: left;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+}
+nav h1 {background-color: #eee; color: #666; font-weight: normal; padding: 5px 10px;}
+main {overflow: hidden;}
+header {padding: 0 0 50px; border-bottom: 1px solid #ccc; text-align: center;}
+footer {margin-top: 20px; padding: 50px 0 0; border-top: 1px solid #ccc; text-align: center;}
+.topbar {padding: 10px 20px; text-align: right;}
+
+.comming {color: #ccc; text-decoration:line-through; padding: 0 20px;}
+.comming a {color: #ccc;}
+
+.formwrap .row {margin-bottom: 20px;}
+.formwrap .row label {display: inline-block; width: 15%; vertical-align: top; text-align: right; padding-right: 20px;}
+.editorwrap {width: 80%; display: inline-block;}
+.btnbar {text-align: center; margin: 50px 0;}
+.btnbar button {width: 50%;}
+
+.formwrap.addcase input[type=text] {width: 60%;}
+.formwrap.addcase .files input[type=text] {width: 50%;}
+
+.imgrow {width: 80%; display: inline-block;}
+
+.editbar {background-color: #eee; margin: 0 0 20px; padding: 20px; text-align: right;}
+.btn-del,.btn-delcat {float: right;}
+.caselist ul {height: 460px; list-style: disc; color: #999;}
+.caselist li a span {font-size: 12px; color: #999;}
+.caselist .btn-del {margin-right:20px;}
+.catshow li {display: inline-block; background-color: #3CB371; padding:5px 20px; color: #fff;}
+.editform {padding: 20px;}
+.editform ul li {margin-bottom: 30px;}
+.editform .btn-del {margin-right: 30px;}
+.editform ul {margin: 0; padding: 0;}
+
+
+.login h1, .register h1 {color: #eee; font-size: 72px; margin: 0; padding-top: 50px; text-align: center;}
+.loginform {
+    background-color: #fff;
+    width: 360px;
+    margin: 100px auto 0;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 0px 0px 50px 0px #ccc;
+    box-shadow: 0px 0px 50px 0px #ccc;
+    padding: 20px;
+}
+.loginform div {margin-bottom: 20px;}
+.loginform div label {display: block; margin-bottom: 10px;}
+.loginform div input {width: 100%; padding: 0; text-indent: 5px; border-color: #ccc; line-height: 2em;}
+.loginform button {width: 100%; line-height: 1.8em;}
+
+.pager {text-align: right; height: 30px; border-top: 1px dashed #ccc; padding: 20px 20px 0;}

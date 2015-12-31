@@ -1,0 +1,41 @@
+body {font:18px/30px "PingFang SC", "Source Han Sans CN", "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;}
+a {color: #2E8B57; text-decoration: none;}
+
+ul{list-style: none;}
+li{margin: 0 0 10px;}
+
+input[type=text] {border: 1px solid #999; font-size: 18px; padding: 3px;}
+button {font-size: 20px;}
+
+header {padding: 0 0 50px; border-bottom: 1px solid #ccc; text-align: center;}
+footer {margin-top: 20px; padding: 50px 0 0; border-top: 1px solid #ccc; text-align: center;}
+.topbar {padding: 10px 20px; text-align: right;}
+
+nav {text-align: center; padding:0 0 50px;}
+nav ul li { display: inline-block;}
+nav ul li a { display: block; background-color: #ccc; margin: 0 5px; padding: 10px 20px;}
+nav ul li .active,
+nav ul li a:hover {background-color: #666; color:#fff;}
+
+nav.case {text-align: left;}
+nav.case a {display: inline-block; background-color: #666; color:#fff; padding: 5px 20px;}
+
+.login {color: #fff;}
+
+main .item {width: 640px; margin: 0 auto 50px;}
+main .item dt {font-size: 24px; margin-bottom: 50px;}
+main .item dd {margin: 0;}
+main .item .goto {font-size: 14px; margin-top: 10px;}
+.desc {width: 640px; margin: 0 auto;}
+
+.postlink {text-align: right;}
+.postlink a {display: inline-block; padding: 5px 20px;}
+.postlink a:hover {background-color: #666; color:#fff;}
+.msg {text-align: center; margin-bottom: 100px;}
+
+.caseimg ul {margin: 0; padding: 0;}
+.caseimg ul li p {font-size: 12px; color:#666; margin-top: 0;}
+
+.pager {width: 640px; margin: 20px auto 0; text-align: center; height: 30px; border-top: 1px dashed #ccc; padding-top: 20px;}
+.pager .prevp {float: left;}
+.pager .nextp {float: right;}
