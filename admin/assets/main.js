@@ -50,6 +50,8 @@ $(document).ready(function(){
                 setTimeout(function () {
                     window.location.href='caselist.php';
                 },500);
+            }else if(data.msg == 'noAuth'){
+                alert ('没有权限！');
             }else{
                 alert ('用户名密码错误！');
             };
