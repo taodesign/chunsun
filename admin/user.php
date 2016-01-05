@@ -8,29 +8,36 @@
 <body>
 
 <?php
-require 'tpl/nav.php';
-require 'tpl/topbar.php';
+    include 'tpl/nav.php';
+    include 'tpl/topbar.php';
 ?>
 
-<div class="editbar">用户</div>
-<div class="formwrap">
-    <p class="comming">权限、修改密码</p>
+<div class="editbar">用户管理</div>
+<div class="formwrap userlist">
 <?php
-
-$queryUser = mysql_query("select * from users");
-
-echo "<ol class='userlist'>";
-while($row=mysql_fetch_array($queryUser)){
-    echo "<li>${row["name"]}</li>";
+$perCount=15; //item per page
+if(isset($_GET['page'])){
+    $p=(int)$_GET['page'];
+}else{
+    $p=1;
 }
-echo "</ol>";
+$startCount = ($p-1)*$perCount;
+
+$queryUser = mysql_query("select * from users order by id limit $startCount,$perCount");
+
+echo "<ul class='userlist'>";
+while($row=mysql_fetch_array($queryUser)){
+    echo "<li>${row["name"]} <span><input type='text' value='' /><a class='btn-resetpw' data-cid='${row["id"]}' href='#'>重置密码</a> | <a class='btn-userdel' data-cid='${row["id"]}' href='#'>删除</a></span></li>";
+}
+echo "</ul>";
+
+include 'pager.php';
 
 mysql_close($con);
-
 ?>
 
 </div>
-<?php require 'tpl/footer.php'; ?>
+<?php include 'tpl/footer.php'; ?>
 <script src="../static/jquery.js"></script>
 <script src="assets/main.js"></script>
 </body>

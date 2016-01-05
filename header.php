@@ -8,7 +8,12 @@
 </head>
 <body>
 <header>
-    <a href="index.php">all post</a>
+    <h1><a href="index.php">all post</a></h1>
+    <div class="topbar">
+        <?php
+            echo '你好，'.$_COOKIE["name"].'， <a href="#" id="logout">退出</a> | <a href="memcp.php" target="_self" title="">个人中心</a>'
+        ?>
+    </div>
 </header>
 
 <?php require 'config.php'; ?>

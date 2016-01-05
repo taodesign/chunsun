@@ -1,4 +1,5 @@
 <?php require '../config.php'; ?>
+
 <nav>
     <h1>管理后台</h1>
     <ul>

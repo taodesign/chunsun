@@ -1,8 +1,8 @@
 <?php
 require_once '../config.php';
 
-$name = $_POST["name"];
-$postpw = md5($_POST["passwd"]);
+$name = $_POST["aName"];
+$postpw = md5($_POST["aPw"]);
 
 $queryUser = mysql_query("select * from users where name='$name' and passwd='$postpw'");
 $resultRow = mysql_num_rows($queryUser);
@@ -17,13 +17,18 @@ if ($resultRow){
     if($usergroup=='administrator'){
         $jsArr = array('msg'=>'success','type'=> 'login');
         echo json_encode($jsArr);
+        header("Location: caselist.php");
     }else{
-        $jsArr = array('msg'=>'noAuth','type'=> 'login', 'aaa'=>$usergroup);
+        $jsArr = array('msg'=>'noAuth','type'=> 'login');
         echo json_encode($jsArr);
+        header("Location: ../memcp.php");
     }
+    //set cookie
+    setcookie("auth_token", md5($name), time()+9*3600, '/');
 }else{
     $jsArr = array('msg'=>'false','type'=> 'login');
     echo json_encode($jsArr);
+    header("Location: admin.php?username=$name&errmsg=err1");
 }
 
 mysql_close($con);

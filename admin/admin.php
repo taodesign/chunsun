@@ -8,12 +8,28 @@
 </head>
 <body>
 
+<a href="#" id="logout">退出</a>
+
 <div class="login">
     <h1>chunsun login</h1>
     <div class="loginform" id="loginform">
+    <?php
+        if(isset($_GET['errmsg'])){
+            $errtype = $_GET['errmsg'];
+            if($errtype == 'err1'){
+                echo '<p class="errmsg">你的用户名和密码与我们的记录不匹配。请重新检查并重试。</p>';
+            }
+        }
+    ?>
+    <form action="login.php" method="post" >
         <div>
             <label for="name">用户名</label>
-            <input type="text" name="aName" value="" placeholder="请输入用户名">
+            <input type="text" name="aName" value="<?php
+                if(isset($_GET['username'])){
+                    echo $_GET['username'];
+                }?>" placeholder="请输入用户名">
+
+
         </div>
         <div>
             <label for="passwd">密码</label>
@@ -26,6 +42,7 @@
             <a href="#" class="reg">注册</a>
             <!-- | <a href="#" class="fogot">忘记密码</a> -->
         </div>
+    </form>
     </div>
 </div>
 

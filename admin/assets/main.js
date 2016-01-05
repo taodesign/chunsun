@@ -8,7 +8,7 @@ $(document).ready(function(){
             var oneday = (exptime*24+8)*3600;//one day Convert to Seconds,+8 hours for china time zone
             time += oneday * 1000; //now millisecond + one day millisecond
             now.setTime(time);
-            document.cookie = name+'='+value+';expires='+now.toUTCString();
+            document.cookie = name+'='+value+';expires='+now.toUTCString()+';path=/';
         },
         getCookie: function (name){
             var cArr=document.cookie.split('; ');
@@ -21,19 +21,19 @@ $(document).ready(function(){
             return '';
         },
         removeCookie:function (name){
-            jsCookie.setCookie(name, 1, -1);
+            jsCookie.setCookie(name, '', -1);
         }
     }
 
     //login
-    var isloginpage = $('.login').length;
+    /*var isloginpage = $('.login').length;
     var islogged = jsCookie.getCookie('name');
     if (islogged && isloginpage) {
         window.location.href='caselist.php';
     }else if(!islogged && !isloginpage){
         window.location.href='admin.php';
-    }
-    $('#login').on('click',function (e) {
+    }*/
+    /*$('#login').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
         var aName = $("input[name='aName']").val();
@@ -43,33 +43,32 @@ $(document).ready(function(){
             data = JSON.parse(data);//将字符串转换为json对象
             //console.log(data);
             if (data.msg == 'success') {
-                jsCookie.setCookie('name', aName , 1);
                 $('#title').text('登录成功！');
                 $('#loginform').hide();
                 $('body').css('background','#fff url(assets/loading.gif) no-repeat center center');
-                setTimeout(function () {
-                    window.location.href='caselist.php';
-                },500);
             }else if(data.msg == 'noAuth'){
                 alert ('没有权限！');
             }else{
                 alert ('用户名密码错误！');
             };
         });
-    })
+    })*/
     document.onkeydown = function(){
         var event = event||window.event;
         if (event.keyCode == 13) {
-            console.log(1);
+            //console.log(1);
             $('#login').trigger('click');
         }
     }
 
     //logout
     $('#logout').on('click',function (e) {
-        jsCookie.removeCookie('name');
-        window.location.href='admin.php';
-    })
+        e.preventDefault();
+        console.log(jsCookie.getCookie('auth_token'));
+        jsCookie.removeCookie('auth_token');
+        console.log(jsCookie.getCookie('auth_token'));
+        //window.location.href='admin.php';
+    });
 
     //case delete
     $('.btn-del').on('click',function (e) {
@@ -78,11 +77,45 @@ $(document).ready(function(){
         var caseid = $this.data('cid');
         $.post("del-case.php",{cid:caseid}, function(data){
             data = JSON.parse(data);//将字符串转换为json对象
-            console.log(data);
+            //console.log(data);
             if (data.msg) {
                 alert ('删除成功');
                 window.location.href='caselist.php';
             };
+        });
+    })
+
+    //user delete
+    $('.btn-userdel').on('click',function (e) {
+        e.preventDefault();
+        var $this= $(this);
+        var userid = $this.data('cid');
+        $.post("user-del.php",{cid:userid}, function(data){
+            data = JSON.parse(data);//将字符串转换为json对象
+            //console.log(data);
+            if (data.msg == 'success') {
+                alert ('删除成功');
+                window.location.href='user.php';
+            }else{
+                alert ('创始人不能删除！');
+                window.location.href='user.php';
+            };
+        });
+    })
+
+    //user delete
+    $('.btn-resetpw').on('click',function (e) {
+        e.preventDefault();
+        var $this= $(this);
+        var userid = $this.data('cid');
+        var thepval = $this.prev().val();
+        $.post("user-resetpw.php",{cid:userid,userpw:thepval}, function(data){
+            data = JSON.parse(data);//将字符串转换为json对象
+            console.log(data);
+            if (data.msg == 'success') {
+                alert ('修改成功!');
+                window.location.href='user.php';
+            }
         });
     })
 
