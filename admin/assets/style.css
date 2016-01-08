@@ -45,8 +45,8 @@ footer {margin-top: 20px; padding: 50px 0 0; border-top: 1px solid #ccc; text-al
 .editform .btn-del {margin-right: 30px;}
 .editform ul {margin: 0; padding: 0;}
 
-
-.login h1, .register h1 {color: #eee; font-size: 72px; margin: 0; padding-top: 50px; text-align: center;}
+/* admin login */
+.login h1 {color: #eee; font-size: 72px; margin: 0; padding-top: 50px; text-align: center;}
 .loginform {
     background-color: #fff;
     width: 360px;

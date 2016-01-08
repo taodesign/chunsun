@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>登录 - 后台 | chunsun</title>
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
+<?php
+    include 'header-case.php';
+?>
 
 <div class="login">
-    <h1>chunsun login</h1>
     <div class="loginform" id="loginform">
     <?php
         if(isset($_GET['errmsg'])){
@@ -19,12 +12,12 @@
             }
         }
     ?>
-    <form action="login.php" method="post" >
+    <form action="login-action.php" method="post" >
         <div>
             <label for="name">用户名</label>
             <input type="text" name="aName" value="<?php
-                if(isset($_GET['username'])){
-                    echo $_GET['username'];
+                if(isset($_GET['thename'])){
+                    echo $_GET['thename'];
                 }?>" placeholder="请输入用户名">
 
 
@@ -36,11 +29,14 @@
         <div class="btnbar">
             <button id="login">登录</button>
         </div>
+        <div class="other">
+            <a href="register.php">注册</a>
+            <!-- | <a href="#" class="fogot">忘记密码</a> -->
+        </div>
     </form>
     </div>
 </div>
 
-<script src="../static/jquery.js"></script>
-<script src="assets/main.js"></script>
-</body>
-</html>
+<?php
+    include 'footer.php';
+?>

@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once 'config.php';
 
 //post data
 $codeval = md5($_POST['codeinput']);

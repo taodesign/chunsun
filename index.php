@@ -1,5 +1,5 @@
 <?php
-    require 'header.php';
+    include 'header.php';
     require 'config.php';
 
     //mysql_select_db('anybodypost',$con);

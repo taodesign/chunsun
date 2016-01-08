@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once 'config.php';
 
 //post data
 $regName = $_POST['regName'];
@@ -11,7 +11,7 @@ $sql="INSERT INTO `users` (`name`,`email`,`passwd`,`logtime`,`usergroup`) VALUES
 $result = mysql_query($sql,$con);
 
 if($result){
-    $jsArr = array('msg'=>'success', 'type'=>'reg');
+    $jsArr = array('msg'=>'success', 'type'=>'reg', 'thename'=>$regName);
     echo json_encode($jsArr);
 }else{
     echo mysql_error();

@@ -11,7 +11,8 @@
     <h1><a href="index.php">all post</a></h1>
     <div class="topbar">
         <?php
-            echo '你好，'.$_COOKIE["name"].'， <a href="#" id="logout">退出</a> | <a href="memcp.php" target="_self" title="">个人中心</a>'
+            echo '<a href="login.php">登录/注册</a>';
+            //echo '你好，'.$_COOKIE["name"].'， <a href="#" id="logout">退出</a> | <a href="index.php" target="_self" title="">网站首页</a>';
         ?>
     </div>
 </header>

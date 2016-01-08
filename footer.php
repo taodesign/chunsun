@@ -1,5 +1,5 @@
 <footer>
-    &copy; 2015 <a class="login" href="admin/add-case.php" title="">管理</a>
+    &copy; 2015
 </footer>
 
 <script src="static/jquery.js"></script>
