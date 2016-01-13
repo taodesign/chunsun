@@ -12,6 +12,7 @@ if ($resultRow){
     //$usergroup = mysql_result($queryUser,0,'usergroup');
     //在字段参数中指定数字偏移量比指定字段名或者 tablename.fieldname 要快得多
     $usergroup = mysql_result($queryUser,0,5);
+    $userslat = mysql_result($queryUser,0,6);
 
     //判断用户组
     if($usergroup=='administrator'){
@@ -23,8 +24,11 @@ if ($resultRow){
         echo json_encode($jsArr);
         header("Location: index.php");
     }
+    //set session
+    session_start();
+    $_SESSION["auth_token"] = md5($name.$userslat);
     //set cookie
-    setcookie("auth_token", md5($name), time()+9*3600, '/');
+    setcookie("auth_token", md5($name.$userslat), time()+9*3600, '/');
 }else{
     $jsArr = array('msg'=>'false','type'=> 'login');
     echo json_encode($jsArr);

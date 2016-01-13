@@ -5,8 +5,9 @@ require_once 'config.php';
 $regName = $_POST['regName'];
 $regMail = $_POST['regMail'];
 $regPw = md5($_POST['regPw']);
+$slat = rand(100000,999999);
 
-$sql="INSERT INTO `users` (`name`,`email`,`passwd`,`logtime`,`usergroup`) VALUES ('$regName','$regMail','$regPw',now(),'reader')";
+$sql="INSERT INTO `users` (`name`,`email`,`passwd`,`lastlogtime`,`usergroup`,`slat`) VALUES ('$regName','$regMail','$regPw',now(),'reader',$slat)";
 
 $result = mysql_query($sql,$con);
 

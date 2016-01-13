@@ -3,7 +3,7 @@
     require 'config.php';
 
     //mysql_select_db('anybodypost',$con);
-    $queryStr = $_SERVER['QUERY_STRING'];
+    //$queryStr = $_SERVER['QUERY_STRING']; // url?(p=1&cat=2)
 
     $perCount=5; //item per page
     if(isset($_GET['page'])){
@@ -12,7 +12,6 @@
         $p=1;
     }
     $startCount = ($p-1)*$perCount;
-    //$endCount = ($p-1)*$perCount;
 
     if(isset($_GET['cat'])){
         //$rowArr = explode("=",$rowStr);

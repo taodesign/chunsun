@@ -11,6 +11,8 @@
     <h1><a href="index.php">all post</a></h1>
     <div class="topbar">
         <?php
+            session_start();
+            echo $_SESSION["auth_token"];
             echo '<a href="login.php">登录/注册</a>';
             //echo '你好，'.$_COOKIE["name"].'， <a href="#" id="logout">退出</a> | <a href="index.php" target="_self" title="">网站首页</a>';
         ?>
