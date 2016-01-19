@@ -48,8 +48,7 @@
             echo "<h1>${row["id"]} . ${row["pname"]} / <a href='index.php?cat=$category'>${row2["category"]}</a></h1>";
             echo "<p>${row["pinfo"]}</p>";
             echo "<div class='postlink'><a href='case.php?case=${row["id"]}'> &raquo; 查看详细</a></div>";
-            echo "</div></section>";
-            echo "</main>";
+            echo "</div></section></main>";
         }
     }else{
         echo '<p class="msg">没有案例录入。</p>';

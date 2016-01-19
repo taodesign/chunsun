@@ -42,6 +42,7 @@
                 while($row=mysql_fetch_array($query)){
                     echo "<li><a href='index.php?cat=${row["label"]}' data-tag='${row["label"]}'>${row["category"]}</a></li>";
                 }
+
             }
 
             mysql_close($con);
