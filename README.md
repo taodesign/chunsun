@@ -1,4 +1,4 @@
-# a content management system named 'spring bamboo shoot'
+# a content management system by php
 
-The project still developing, plan release 1.0 in February 2016.
+The project still developing
 
