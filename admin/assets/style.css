@@ -4,48 +4,98 @@ a {color: #2E8B57; text-decoration: none;}
 ul{list-style: none;}
 li{margin: 0 0 10px;}
 
-input[type=text],input[type=password] { border: 1px solid #999; font-size: 18px; padding: 3px;}
-button {font-size: 20px;}
-
-nav {
-    width: 160px;
-    float: left;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    padding: 20px;
+.formwrap input[type=text],
+.formwrap input[type=password]{
+    border: 1px solid #999; font-size: 18px; padding: 5px;
 }
-nav h1 {background-color: #eee; color: #666; font-weight: normal; padding: 5px 10px;}
-main {overflow: hidden;}
+.formwrap input[type=button] {font-size: 18px; padding: 3px 20px;}
+select {font-size: 16px; height:30px; width:240px;}
+button {background-color: #09c; border: 0 none; color: #fff; font-size: 18px; padding: 3px 10px;}
+
+nav {width: 160px; float: left; margin-right: 5px; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; background-color: #fff;}
+nav h1 {background-color: #eee; color: #666; font-weight: normal; padding: 5px 10px; margin:0; text-align: center;}
+nav ul {margin:0; padding: 0 0 16px; text-align: center;}
+nav ul li {padding:16px 0 0; margin: 0;}
+main {overflow: hidden; min-height:500px;}
 header {padding: 0 0 50px; border-bottom: 1px solid #ccc; text-align: center;}
-footer {margin-top: 20px; padding: 50px 0 0; border-top: 1px solid #ccc; text-align: center;}
+footer {margin-top: 20px; padding: 20px 0; border-top: 1px solid #ccc; text-align: center; clear: both;}
 .topbar {padding: 10px 20px; text-align: right;}
 
 .comming {color: #ccc; text-decoration:line-through; padding: 0 20px;}
 .comming a {color: #ccc;}
 
-.formwrap .row {margin-bottom: 20px;}
-.formwrap .row label {display: inline-block; width: 15%; vertical-align: top; text-align: right; padding-right: 20px;}
-.editorwrap {width: 80%; display: inline-block;}
+.formwrap .row {margin-bottom: 10px;}
+.formwrap .row label {display: inline-block; width: 15%; vertical-align: top; text-align: right; padding-right: 20px; line-height: 36px;}
+.editorwrap {width: 60%; display: inline-block;}
+.editorwrap textarea {width: 100%; height: 200px;}
 .btnbar {text-align: center; margin: 50px 0;}
 .btnbar button {width: 50%;}
 
 .formwrap.addcase input[type=text] {width: 60%;}
+.formwrap.addcase input[type=text]:disabled {color: #999;}
 .formwrap.addcase .files input[type=text] {width: 50%;}
 
 .imgrow {width: 80%; display: inline-block;}
+.imgrow p {
+    margin: 2px 0;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.cover-preview {
+    width: 350px; height: 156px; overflow: hidden;
+    background-color: #ff9;
+    border: 1px solid #ccc;
+    float: left; margin-right: 20px;
+}
+.cover-preview img {vertical-align: top;}
 
-.editbar {background-color: #eee; margin: 0 0 20px; padding: 20px; text-align: right;}
-.btn-del,.btn-delcat {float: right;}
-.caselist ul, .userlist ul {height: 460px; list-style: disc; color: #666;}
-.caselist li a span {font-size: 12px; color: #999;}
+.editbar {
+    background-color: #eee;
+    margin: 0 0 20px;
+    padding: 20px 20px 20px 40px;
+    font-size: 16px;
+    color: #999;
+}
+.thead span {display: inline-block; color:#999;}
+.g-name{width:230px;}
+.g-label{width:230px;}
+.g-count{width:40px;}
+.g-del{float: right;}
+.editform .c-count {width:30px; text-align: center; font-weight: normal; font-size: 12px; line-height: 20px; border-color: #999; border-radius: 20px;}
+.btn-del, .btn-delcat {
+    float: right;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 2px 12px;
+    font-size: 14px;
+}
+.btn-del:hover, .btn-delcat:hover {
+    background-color:#c9302c;
+    color:#ff0;
+    text-decoration: none;
+}
+.caselist ul {height: 460px; list-style: disc; color: #999; padding: 0;}
+.caselist ul li {margin: 0; padding: 5px 10px; list-style: none;}
+.caselist ul li:hover {background-color: #eee;}
+.caselist li a .cname {
+    font-size: 12px;
+    display: inline-block;
+    padding: 0 2px;
+    min-width: 60px;
+    text-align: left;
+}
+.caselist li a:hover {color: #09c; text-decoration: underline;}
+.caselist li a em {font-size: 11px; color: #999; font-style: normal; margin-left: 10px;}
 .caselist .btn-del {margin-right:20px;}
 .catshow li {display: inline-block; background-color: #3CB371; padding:5px 20px; color: #fff;}
 .editform {padding: 20px;}
-.editform ul li {margin-bottom: 30px;}
+.editform ul li {margin-bottom: 20px;}
 .editform .btn-del {margin-right: 30px;}
 .editform ul {margin: 0; padding: 0;}
+.timeinfo {font-size: 12px; color: #999;}
+.timeinfo span {font-size: 14px;}
 
-/* admin login */
+/* login */
 .login h1 {color: #eee; font-size: 72px; margin: 0; padding-top: 50px; text-align: center;}
 .loginform {
     background-color: #fff;
@@ -58,12 +108,7 @@ footer {margin-top: 20px; padding: 50px 0 0; border-top: 1px solid #ccc; text-al
 }
 .loginform div {margin-bottom: 20px;}
 .loginform div label {display: block; margin-bottom: 10px;}
-.loginform div input {width: 100%; padding: 0; text-indent: 5px; border-color: #ccc; line-height: 2em;}
-.loginform button {width: 100%; line-height: 1.8em;}
+.loginform div input {width: 100%; padding: 0; text-indent: 5px; border-color: #ccc; line-height: 2em;-webkit-box-sizing:border-box; box-sizing:border-box;}
+.loginform button {width: 100%; line-height: 1.8em;-webkit-box-sizing:border-box; box-sizing:border-box;}
 
-.loginform .other {text-align: center; color: #ccc;}
-.errmsg {font-size: 12px; color: #f00;}
-
-.userlist li span {float: right; padding-right: 20px;}
-.userlist li input {border-width: 0 0 1px 0; border-bottom-color: #ccc; padding: 0; color: #c90; width: 160px;}
 .pager {text-align: right; height: 30px; border-top: 1px dashed #ccc; padding: 20px 20px 0;}

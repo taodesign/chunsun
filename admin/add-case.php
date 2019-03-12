@@ -14,8 +14,8 @@ require 'tpl/topbar.php';
 
 if(!empty($_GET["case"])){
     $query ="select * from cases where id =".$_GET['case']." limit 0,1 ";
-    $resource=mysql_query($query);
-    $row=mysql_fetch_array($resource);
+    $resource=mysqli_query($con, $query);
+    $row=mysqli_fetch_array($resource);
     echo '<input type="hidden" id="caseId" name="caseId" value="'.$_GET["case"].'">';
 }else{
     $row = array(
@@ -41,8 +41,8 @@ if(!empty($_GET["case"])){
             <select name="pCat" id="pCat">
                 <?php
                     $caseLabel = $row['label'];
-                    $queryCat = mysql_query("select * from category");
-                    while($rowCat=mysql_fetch_array($queryCat)) {
+                    $queryCat = mysqli_query($con, "select * from category");
+                    while($rowCat=mysqli_fetch_array($queryCat)) {
                         $catLabel = $rowCat["label"];
                         if ($catLabel == $caseLabel) {
                             echo "<option selected='selected' value='${rowCat["label"]}'>${rowCat["category"]}</option>";
@@ -68,13 +68,21 @@ if(!empty($_GET["case"])){
         <div class="row">
             <label for="">描述</label>
             <div class="editorwrap">
-                <textarea name="content" style="width:700px;height:200px;visibility:hidden;" id="pDesc"><?php echo $row['pdesc']; ?></textarea>
+                <textarea name="content" id="pDesc"><?php echo $row['pdesc']; ?></textarea>
             </div>
         </div>
         <div class="row files">
             <label for="">选择封面</label>
             <div class="imgrow">
-                <input type="text" id="pCover" value="<?php echo $row['cover']; ?>" disabled="disabled" /> <input type="button" id="filemanager" value="选择图片" />
+                <?php
+                if(!empty($_GET["case"])){
+                    echo "<div class='cover-preview'><img id='pCover' src='".$row["cover"]."' /></div>";
+                }else{
+                    echo "<div class='cover-preview'><img id='pCover' src='/thepaper-cases/upload/image/case.jpg' /></div>";
+                }
+                ?>
+                <input id="coverImg" type="file" name="theUploadCover" />
+                <button id="upload">上传</button>
             </div>
         </div>
         <div class="btnbar">
@@ -89,41 +97,9 @@ if(!empty($_GET["case"])){
     </div>
 <?php require 'tpl/footer.php'; ?>
 
-<script src="../static/jquery.js"></script>
+<script src="../static/jquery-3.3.1.min.js"></script>
 <script src="assets/main.js"></script>
-<script charset="utf-8" src="kindeditor/kindeditor-min.js"></script>
-<script charset="utf-8" src="kindeditor/lang/zh_CN.js"></script>
 <script>
-    //editor init
-    var editor;
-    KindEditor.ready(function(K) {
-        editor = K.create('textarea[name="content"]', {
-            resizeType : 1,
-            allowPreviewEmoticons : false,
-            allowImageUpload : true,
-            uploadJson : 'kindeditor/php/upload_json.php',
-            fileManagerJson : 'kindeditor/php/file_manager_json.php',
-            allowFileManager : true,
-            items : [
-                'fontsize', '|', 'forecolor', 'bold', 'italic', 'underline',
-                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-                'insertunorderedlist', 'hr', '|', 'emoticons', 'image', 'link', 'unlink', '|', 'source']
-        });
-
-        K('#filemanager').click(function() {
-            editor.loadPlugin('filemanager', function() {
-                editor.plugin.filemanagerDialog({
-                    viewType : 'VIEW',
-                    dirName : 'image',
-                    clickFn : function(url, title) {
-                        K('#pCover').val(url);
-                        editor.hideDialog();
-                    }
-                });
-            });
-        });
-    });
-
     //submit
     $('#btnAddCase').on('click',function (e) {
         e.preventDefault();

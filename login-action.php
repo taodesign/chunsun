@@ -4,18 +4,18 @@ require_once 'config.php';
 $name = $_POST["aName"];
 $postpw = md5($_POST["aPw"]);
 
-$queryUser = mysql_query("select * from users where name='$name' and passwd='$postpw'");
-$resultRow = mysql_num_rows($queryUser);
+$queryUser = mysqli_query($con, "select * from users where name='$name' and passwd='$postpw'");
+$resultRow = mysqli_num_rows($queryUser);
 
 if ($resultRow){
     //查到结果只有一行，所以得到第0行的usergroup字段的值，语句是：
     //$usergroup = mysql_result($queryUser,0,'usergroup');
     //在字段参数中指定数字偏移量比指定字段名或者 tablename.fieldname 要快得多
-    $usergroup = mysql_result($queryUser,0,5);
-    $userslat = mysql_result($queryUser,0,6);
+    $userRole = mysqli_result($queryUser,0,5);
+    $userslat = mysqli_result($queryUser,0,6);
 
     //判断用户组
-    if($usergroup=='administrator'){
+    if($userRole=='administrator'){
         $jsArr = array('msg'=>'success','type'=> 'login');
         echo json_encode($jsArr);
         header("Location: admin/caselist.php");

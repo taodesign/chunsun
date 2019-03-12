@@ -26,33 +26,36 @@ $(document).ready(function(){
     }
 
     //login
-    /*var isloginpage = $('.login').length;
+    var isloginpage = $('.login').length;
     var islogged = jsCookie.getCookie('name');
     if (islogged && isloginpage) {
         window.location.href='caselist.php';
     }else if(!islogged && !isloginpage){
         window.location.href='admin.php';
-    }*/
-    /*$('#login').on('click',function (e) {
+    }
+    $('#login').on('click',function (e) {
         e.preventDefault();
+        //console.log(1);
         var $this= $(this);
         var aName = $("input[name='aName']").val();
         var aPw = $("input[name='aPw']").val();
 
-        $.post("login.php",{name:aName,passwd:aPw}, function(data){
+        $.post("login.php",{username:aName,passwd:aPw}, function(data){
             data = JSON.parse(data);//将字符串转换为json对象
             //console.log(data);
             if (data.msg == 'success') {
-                $('#title').text('登录成功！');
+                jsCookie.setCookie('name', aName , 1);
                 $('#loginform').hide();
+                $('#title').text('登录成功！');
                 $('body').css('background','#fff url(assets/loading.gif) no-repeat center center');
-            }else if(data.msg == 'noAuth'){
-                alert ('没有权限！');
+                setTimeout(function () {
+                    window.location.href='caselist.php';
+                },500);
             }else{
                 alert ('用户名密码错误！');
             };
         });
-    })*/
+    });
     document.onkeydown = function(){
         var event = event||window.event;
         if (event.keyCode == 13) {
@@ -126,14 +129,14 @@ $(document).ready(function(){
             cNameE = $('#cNameE').val();
 
         if(cName && cNameE){
-            $.post("add-category-post.php",{
+            $.post("category-add.php",{
                 category:cName,
                 label:cNameE
             }, function(data){
                 data = JSON.parse(data);//将字符串转换为json对象
                 if(data.msg == 'success'){
                     alert('添加成功！');
-                    window.location = 'add-category.php';
+                    window.location = 'category.php';
                 };
             });
         }else{
@@ -160,7 +163,7 @@ $(document).ready(function(){
             console.log(data);
             if (data.msg) {
                 alert ('修改成功');
-                window.location.href='add-category.php';
+                window.location.href='category.php';
             };
         });
     })
@@ -176,7 +179,7 @@ $(document).ready(function(){
             console.log(data);
             if (data.msg) {
                 alert ('删除成功');
-                window.location.href='add-category.php';
+                window.location.href='category.php';
             };
         });
     })

@@ -11,9 +11,9 @@ $pdesc = $_POST["pdesc"];
 
 $sql="INSERT INTO cases (label,pname,purl,pinfo,pv,cover,pdesc) VALUES ('$label','$pname','$purl','$pinfo','$pv','$cover','$pdesc')";
 
-$result = mysql_query($sql,$con);
+$result = mysqli_query($con, $sql);
 
 $jsArr = array('msg'=>'success','type'=> 'add');
 echo json_encode($jsArr);
 
-mysql_close($con);
+mysqli_close($con);

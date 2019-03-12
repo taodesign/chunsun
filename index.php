@@ -13,41 +13,37 @@
     }
     $startCount = ($p-1)*$perCount;
 
-    if(isset($_GET['cat'])){
-        //$rowArr = explode("=",$rowStr);
-        //$category =  $rowArr[1];
-        $getCategory = $_GET['cat'];
-        $queryCase = mysql_query("select * from cases WHERE label='$getCategory' order by id limit $startCount,$perCount",$con);
-        //query all for pager
-        $queryCaseAll = mysql_query("select * from cases WHERE label='$getCategory' order by id",$con);
+    if(isset($_GET['tag'])){
+        $getTag = $_GET['tag'];
+        $queryCase = mysqli_query($con, "select * from posts WHERE tag='$getTag' order by createTime DESC limit $startCount, $perCount");
+        //count for pager
+        $queryCount = mysqli_query($con, "select count(*) from posts WHERE tag='$getTag'");
+        $countAllrow = mysqli_fetch_row($queryCount);
+        $countAll = $countAllrow[0];
     }else{
-        $queryCase = mysql_query("select * from cases order by id limit $startCount,$perCount",$con);
-        //query all for pager
-        $queryCaseAll = mysql_query("select * from cases order by id",$con);
+        $queryCase = mysqli_query($con, "select * from posts order by createTime DESC limit $startCount, $perCount");
+        //count for pager
+        $queryCount = mysqli_query($con, "select count(*) from posts");
+        $countAllrow = mysqli_fetch_row($queryCount);
+        $countAll = $countAllrow[0];
     }
 
-    $queryCount = mysql_query("select count(*) from cases");
-    //method 1
-    //list($countAll) = mysql_fetch_row($queryCount);
-    //print_r($countAll);
 
-    //method 2
-    $countAllrow = mysql_fetch_row($queryCount);
-    $countAll = $countAllrow[0];
-    //print_r($countAll);
+    //echo $countAll;
 
     if ($countAll){
-        while($row=mysql_fetch_array($queryCase)){
+        while($row=mysqli_fetch_array($queryCase)){
             //query for label Chinese name
-            $category = "${row["label"]}";
-            $queryCategory = mysql_query("select * from category WHERE label='$category' limit $startCount,$perCount");
-            $row2=mysql_fetch_array($queryCategory);
+            $theTag = "${row["tag"]}";
+            $queryTag = mysqli_query($con, "select * from tags WHERE tag='$theTag'");
+            $row2=mysqli_fetch_array($queryTag);
+
+            //echo json_encode($row2);
 
             echo "<main><section id='tag-ad'><div class='item'>";
-            echo "<img src='${row["cover"]}' alt='' />";
-            echo "<h1>${row["id"]} . ${row["pname"]} / <a href='index.php?cat=$category'>${row2["category"]}</a></h1>";
-            echo "<p>${row["pinfo"]}</p>";
-            echo "<div class='postlink'><a href='case.php?case=${row["id"]}'> &raquo; 查看详细</a></div>";
+            echo "<h2><a href='post.php?case=${row["id"]}'>${row["ptitle"]}</a></h2>";
+            echo "<p>${row["article"]}</p>";
+            echo "<div class='postlink'><a href='post.php?case=${row["id"]}'>发布于 ${row["createTime"]}</a> / <a href='index.php?tag=$theTag'>${row2["tag_local"]}</a></div>";
             echo "</div></section></main>";
         }
     }else{
@@ -56,7 +52,7 @@
 
 include 'pager.php';
 
-mysql_free_result($queryCase);
-mysql_close($con);
+mysqli_free_result($queryCase);
+mysqli_close($con);
 
 require 'footer.php';

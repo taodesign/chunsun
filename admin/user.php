@@ -23,22 +23,22 @@ if(isset($_GET['page'])){
 }
 $startCount = ($p-1)*$perCount;
 
-$queryUser = mysql_query("select * from users order by id limit $startCount,$perCount");
+$queryUser = mysqli_query($con, "select * from users order by id limit $startCount,$perCount");
 
 echo "<ul class='userlist'>";
-while($row=mysql_fetch_array($queryUser)){
+while($row=mysqli_fetch_array($queryUser)){
     echo "<li>${row["name"]} <span><input type='text' value='' /><a class='btn-resetpw' data-cid='${row["id"]}' href='#'>重置密码</a> | <a class='btn-userdel' data-cid='${row["id"]}' href='#'>删除</a></span></li>";
 }
 echo "</ul>";
 
 include 'pager.php';
 
-mysql_close($con);
+mysqli_close($con);
 ?>
 
 </div>
 <?php include 'tpl/footer.php'; ?>
-<script src="../static/jquery.js"></script>
+<script src="../static/jquery-3.3.1.min.js"></script>
 <script src="assets/main.js"></script>
 </body>
 </html>

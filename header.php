@@ -9,14 +9,6 @@
 <body>
 <header>
     <h1><a href="index.php">all post</a></h1>
-    <div class="topbar">
-        <?php
-            session_start();
-            echo $_SESSION["auth_token"];
-            echo '<a href="login.php">登录/注册</a>';
-            //echo '你好，'.$_COOKIE["name"].'， <a href="#" id="logout">退出</a> | <a href="index.php" target="_self" title="">网站首页</a>';
-        ?>
-    </div>
 </header>
 
 <?php require 'config.php'; ?>
@@ -25,27 +17,25 @@
     <ul id="nav">
         <?php
             //mysql_select_db('anybodypost',$con);
-            $query = mysql_query("select * from category");
+            $queryTags = mysqli_query($con, "select * from tags");
 
             //index or category
-            if(isset($_GET['cat'])) {
-                $category = $_GET["cat"];
-                while($row=mysql_fetch_array($query)){
+            if(isset($_GET['tag'])) {
+                $selectTag = $_GET["tag"];
+                while($row=mysqli_fetch_array($queryTags)){
                     //nav active state
-                    if($category == "${row["label"]}"){
-                        echo "<li><a href='index.php?cat=${row["label"]}' data-tag='${row["label"]}' class='active'>${row["category"]}</a></li>";
+                    if($selectTag == "${row["tag"]}"){
+                        echo "<li><a href='index.php?tag=${row["tag"]}' data-tag='${row["tag"]}' class='active'>${row["tag_local"]}</a></li>";
                     }else {
-                        echo "<li><a href='index.php?cat=${row["label"]}' data-tag='${row["label"]}'>${row["category"]}</a></li>";
+                        echo "<li><a href='index.php?tag=${row["tag"]}' data-tag='${row["tag"]}'>${row["tag_local"]}</a></li>";
                     }
                 }
             }else{
-                while($row=mysql_fetch_array($query)){
-                    echo "<li><a href='index.php?cat=${row["label"]}' data-tag='${row["label"]}'>${row["category"]}</a></li>";
+                while($row=mysqli_fetch_array($queryTags)){
+                    echo "<li><a href='index.php?tag=${row["tag"]}' data-tag='${row["tag"]}'>${row["tag_local"]}</a></li>";
                 }
 
             }
-
-            mysql_close($con);
         ?>
     </ul>
 </nav>

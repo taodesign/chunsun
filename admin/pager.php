@@ -1,7 +1,7 @@
 <?php
 
-$queryCaseAll = mysql_query("select * from cases");
-$sum=mysql_num_rows($queryCaseAll);
+$queryCaseAll = mysqli_query($con, "select * from cases");
+$sum=mysqli_num_rows($queryCaseAll);
 
 if($sum % $perCount==0){
     $total=(int)($sum/$perCount);

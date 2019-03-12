@@ -24,22 +24,22 @@ if(isset($_GET['page'])){
 }
 $startCount = ($p-1)*$perCount;
 
-$queryCase = mysql_query("select * from cases order by id limit $startCount,$perCount");
+$queryCase = mysqli_query($con, "select * from cases order by id limit $startCount,$perCount");
 
-if (mysql_num_rows($queryCase)){
+if (mysqli_num_rows($queryCase)){
     echo "<ul>";
-    while($row=mysql_fetch_array($queryCase)){
+    while($row=mysqli_fetch_array($queryCase)){
         //$imglist = explode(",","${row["imgsrc"]}");
 
         //query for label Chinese name
         $category = "${row["label"]}";
-        $queryCategory = mysql_query("select * from category WHERE label='$category'");
-        $row2=mysql_fetch_array($queryCategory);
+        $queryCategory = mysqli_query($con, "select * from category WHERE label='$category'");
+        $row2=mysqli_fetch_array($queryCategory);
 
         //query case id
         $caseId = "${row["id"]}";
 
-        echo "<li><a href='add-case.php?case=$caseId'>${row["pname"]} <span>/${row2["category"]}</span></a> <a href='#' data-cid='$caseId' class='btn-del'>删除</a></li>";
+        echo "<li><span>${row["id"]}</span>.<a href='add-case.php?case=$caseId'>${row2["label"]} &rsaquo; ${row["pname"]}</a> <a href='#' data-cid='$caseId' class='btn-del'>删除</a></li>";
     }
     echo "</ul>";
 }else{
@@ -48,15 +48,15 @@ if (mysql_num_rows($queryCase)){
 
 include 'pager.php';
 
-mysql_free_result($queryCase);
-mysql_close($con);
+mysqli_free_result($queryCase);
+mysqli_close($con);
 
 ?>
 
     </div>
 <?php require 'tpl/footer.php'; ?>
 
-<script src="../static/jquery.js"></script>
+<script src="../static/jquery-3.3.1.min.js"></script>
 <script src="assets/main.js"></script>
 </body>
 </html>

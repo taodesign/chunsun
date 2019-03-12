@@ -5,8 +5,8 @@ $cid = $_POST["cid"];
 
 if($cid){
     $query="delete from cases where id=$cid";
-    $result = mysql_query ($query,$con);
-    mysql_close($con);
+    $result = mysqli_query ($con, $query);
+    mysqli_close($con);
 
     $jsArr = array('msg'=>'success');
     echo json_encode($jsArr);

@@ -6,9 +6,9 @@ $category = $_POST["category"];
 
 $sql="INSERT INTO category (label,category) VALUES ('$label','$category')";
 
-$result = mysql_query($sql,$con);
+$result = mysqli_query($con, $sql);
 
 $jsArr = array('msg'=>'success','type'=> 'add');
 echo json_encode($jsArr);
 
-mysql_close($con);
+mysqli_close($con);

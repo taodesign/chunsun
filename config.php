@@ -1,5 +1,5 @@
 <?php
-$con = mysql_connect("localhost","root","111111") or die(mysql_error());
-mysql_select_db('chunsun',$con);
-mysql_query("SET NAMES utf8");
+$con = mysqli_connect("localhost","root","111111") or die(mysqli_error());
+mysqli_select_db($con, 'taoshu');
+mysqli_query($con, "SET NAMES utf8");
 ?>
