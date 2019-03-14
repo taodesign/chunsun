@@ -12,33 +12,35 @@
     include 'tpl/topbar.php';
 ?>
 
-<div class="editbar">用户管理</div>
-<div class="formwrap userlist">
-<?php
-$perCount=15; //item per page
-if(isset($_GET['page'])){
-    $p=(int)$_GET['page'];
-}else{
-    $p=1;
-}
-$startCount = ($p-1)*$perCount;
-
-$queryUser = mysqli_query($con, "select * from users order by id limit $startCount,$perCount");
-
-echo "<ul class='userlist'>";
-while($row=mysqli_fetch_array($queryUser)){
-    echo "<li>${row["name"]} <span><input type='text' value='' /><a class='btn-resetpw' data-cid='${row["id"]}' href='#'>重置密码</a> | <a class='btn-userdel' data-cid='${row["id"]}' href='#'>删除</a></span></li>";
-}
-echo "</ul>";
-
-include 'pager.php';
-
-mysqli_close($con);
-?>
+<div class="editbar">创建用户</div>
+<div class="userlist">
+    <p>用户列表：可删除、编辑</p>
+</div>
+<div class="editbar">创建用户</div>
+<div class="formwrap">
+<form action="user-create.inc.php" method="post" >
+    <div>
+        <label for="name">用户名</label>
+        <input type="text" name="username" placeholder="请输入用户名">
+    </div>
+    <div>
+        <label for="name">电子邮箱</label>
+        <input type="email" name="userEmail" placeholder="请输入email地址">
+    </div>
+    <div>
+        <label for="name">角色</label>
+        <input type="text" name="userRole" value="editor" placeholder="编辑" readonly>
+    </div>
+    <div>
+        <label for="passwd">密码</label>
+        <input type="text" name="userpw" value="" placeholder="请输入密码">
+    </div>
+    <div class="btnbar">
+        <button type="submit" id="login">提交</button>
+    </div>
+</form>
 
 </div>
 <?php include 'tpl/footer.php'; ?>
-<script src="../static/jquery-3.3.1.min.js"></script>
-<script src="assets/main.js"></script>
 </body>
 </html>

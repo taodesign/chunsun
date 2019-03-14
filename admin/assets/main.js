@@ -26,13 +26,13 @@ $(document).ready(function(){
     }
 
     //login
-    var isloginpage = $('.login').length;
+    /* var isloginpage = $('.login').length;
     var islogged = jsCookie.getCookie('name');
     if (islogged && isloginpage) {
         window.location.href='caselist.php';
     }else if(!islogged && !isloginpage){
         window.location.href='admin.php';
-    }
+    } */
     $('#login').on('click',function (e) {
         e.preventDefault();
         //console.log(1);

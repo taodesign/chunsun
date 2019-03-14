@@ -1,5 +1,11 @@
 <?php
-$con = mysqli_connect("localhost","root","111111") or die(mysqli_error());
-mysqli_select_db($con, 'taoshu');
-mysqli_query($con, "SET NAMES utf8");
+$server = "localhost";
+$dbUser = "root";
+$dbPass = "111111";
+$dbName = "taoshu";
+
+$con = mysqli_connect($server, $dbUser, $dbPass, $dbName);
+if (!$con) {
+    die("database connection failed:".mysqli_connect_error());
+}
 ?>
