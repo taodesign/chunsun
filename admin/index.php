@@ -11,20 +11,28 @@
 <div class="login">
     <h1>登录</h1>
     <div class="formwrap loginform" id="loginform">
-
-    <form action="login.inc.php" method="post" >
-        <div>
-            <label for="name">用户名</label>
-            <input type="text" name="aName" placeholder="请输入用户名">
+        <form action="login.inc.php" method="post">
+            <div>
+                <label for="name">用户名</label>
+                <input type="text" name="aName" placeholder="请输入用户名">
+            </div>
+            <div>
+                <label for="passwd">密码</label>
+                <input type="password" name="aPw" value="" placeholder="请输入密码">
+            </div>
+            <div class="btnbar">
+                <button type="submit" name="submit-login">登录</button>
+            </div>
+        </form>
+        <div class="tips">
+            <?php
+                if ($_GET['errmsg']=="nouser") {
+                    echo "*用户不存在";
+                }else if($_GET['errmsg']=="wrongpw"){
+                    echo "*密码不正确";
+                }
+            ?>
         </div>
-        <div>
-            <label for="passwd">密码</label>
-            <input type="password" name="aPw" value="" placeholder="请输入密码">
-        </div>
-        <div class="btnbar">
-            <button type="submit" id="login">登录</button>
-        </div>
-    </form>
     </div>
 </div>
 

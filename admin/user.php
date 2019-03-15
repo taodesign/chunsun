@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>添加项目 - 后台 - thepaper cases</title>
+    <title>管理 | 用户</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     include 'tpl/topbar.php';
 ?>
 
-<div class="editbar">创建用户</div>
+<div class="editbar">用户列表</div>
 <div class="userlist">
     <p>用户列表：可删除、编辑</p>
 </div>

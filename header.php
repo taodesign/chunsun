@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>all post</title>
     <link rel="stylesheet" href="static/style.css">
-    <!-- <link rel="alternate" type="application/rss+xml" title="Feed" href="http://localhost/thepaper-case/rss.php" /> -->
+    <!-- <link rel="alternate" type="application/rss+xml" title="Feed" href="http://localhost/taoshu/rss.php" /> -->
 </head>
 <body>
 <header>

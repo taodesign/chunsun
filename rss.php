@@ -1,8 +1,7 @@
 <?php
 header("Content-type:text/xml;charset=utf-8");
-$con = mysql_connect("localhost","root","111111") or die(mysql_error());
-mysql_select_db('thepaper_caseshow',$con);
-$query = "select pname, purl, pdesc from `cases` limit 15";
+require '../config.php';
+$query = "SELECT ptitle,article FROM posts limit 30";
 
 $result = mysql_query($query, $con);
 while ($line = mysql_fetch_assoc($result)){
@@ -15,7 +14,7 @@ $output = "<?xml version=\"1.0\"?>
             <rss version=\"2.0\">
                 <channel>
                     <title>Our Demo RSS</title>
-                    <link>http://localhost/thepaper-case/rss.php</link>
+                    <link>http://localhost/taoshu/rss.php</link>
                     <description>A Test RSS</description>
                     <language>zh-cn</language>
                     <pubDate>$now</pubDate>

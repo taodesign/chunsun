@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>添加项目 - 后台 - thepaper cases</title>
+    <title>管理 | 分类</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -13,8 +13,8 @@
     <?php require 'tpl/topbar.php'; ?>
     <div class="editbar">添加</div>
     <div class="formwrap editform">
-        <input type="text" name="cName" id="cName" placeholder='请填写分类名称(必填)' />
-        <input type="text" name="cNameE" id="cNameE" placeholder='分类英文名称(必填)' />
+        <input type="text" name="tag" id="tag" placeholder='请填写分类名称(必填)' />
+        <input type="text" name="tag_local" id="tagLocal" placeholder='分类英文名称(必填)' />
         <button id='btnAddcat'>添加</button>
     </div>
     <div class="editbar">修改/删除</div>
@@ -28,14 +28,17 @@
             <span class="g-del">删除</span>
         </li>
 <?php
-    mysqli_select_db($con, 'anybodypost');
-    $query = mysqli_query($con, "select * from category");
-
+    $query = mysqli_query($con, "SELECT * FROM tags");
     while($row=mysqli_fetch_array($query)){
-        echo "<li><input type='text' name='cname' id='cName${row["id"]}' value='${row["category"]}' /> <input type='text' name='cename' id='cNameE${row["id"]}' value='${row["label"]}' /> <button data-cid='${row["id"]}' class='btn-editcat'>修改</button> <button data-cid='${row["id"]}' class='btn-delcat'>删除</button></li>";
+        echo "<li><input type='text' class='c-count' disabled='disabled' name='cCount' value='${row["tagcounter"]}' /> <input type='text' name='theTagLocal' id='theTagLocal${row["id"]}' value='${row["tag_local"]}' /> <input type='text' name='thetag' id='theTag${row["id"]}' value='${row["tag"]}' /> <button data-tid='${row["id"]}' class='btn-editcat'>修改</button> <button data-tid='${row["id"]}' class='btn-delcat'>删除</button></li>";
     }
 ?>
         </ul>
+    </div>
+
+    <div class="editbar">tag统计</div>
+    <div class="catcount">
+        <button id='btnTagCount'>计数重建</button>
     </div>
 </main>
 <?php require 'tpl/footer.php'; ?>

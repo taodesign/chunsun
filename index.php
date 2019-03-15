@@ -41,9 +41,9 @@
             //echo json_encode($row2);
 
             echo "<main><section id='tag-ad'><div class='item'>";
-            echo "<h2><a href='post.php?case=${row["id"]}'>${row["ptitle"]}</a></h2>";
+            echo "<h2><a href='post.php?id=${row["id"]}'>${row["ptitle"]}</a></h2>";
             echo "<p>${row["article"]}</p>";
-            echo "<div class='postlink'><a href='post.php?case=${row["id"]}'>发布于 ${row["createTime"]}</a> / <a href='index.php?tag=$theTag'>${row2["tag_local"]}</a></div>";
+            echo "<div class='postlink'><a href='post.php?id=${row["id"]}'>发布于 ${row["createTime"]}</a> / <a href='index.php?tag=$theTag'>${row2["tag_local"]}</a></div>";
             echo "</div></section></main>";
         }
     }else{

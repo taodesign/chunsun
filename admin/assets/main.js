@@ -1,89 +1,16 @@
 $(document).ready(function(){
-    //cookie
-    var jsCookie = {
-        setCookie: function(name, value, exptime) {
-            var now = new Date();
-            var time = now.getTime();
-            //var anhour = (exptime+8)*3600;//one hour Convert to Seconds
-            var oneday = (exptime*24+8)*3600;//one day Convert to Seconds,+8 hours for china time zone
-            time += oneday * 1000; //now millisecond + one day millisecond
-            now.setTime(time);
-            document.cookie = name+'='+value+';expires='+now.toUTCString()+';path=/';
-        },
-        getCookie: function (name){
-            var cArr=document.cookie.split('; ');
-            for(var i=0;i<cArr.length;i++){
-                var cArr2=cArr[i].split('=');
-                if(cArr2[0]==name){
-                    return cArr2[1];
-                }
-            }
-            return '';
-        },
-        removeCookie:function (name){
-            jsCookie.setCookie(name, '', -1);
-        }
-    }
-
-    //login
-    /* var isloginpage = $('.login').length;
-    var islogged = jsCookie.getCookie('name');
-    if (islogged && isloginpage) {
-        window.location.href='caselist.php';
-    }else if(!islogged && !isloginpage){
-        window.location.href='admin.php';
-    } */
-    $('#login').on('click',function (e) {
-        e.preventDefault();
-        //console.log(1);
-        var $this= $(this);
-        var aName = $("input[name='aName']").val();
-        var aPw = $("input[name='aPw']").val();
-
-        $.post("login.php",{username:aName,passwd:aPw}, function(data){
-            data = JSON.parse(data);//将字符串转换为json对象
-            //console.log(data);
-            if (data.msg == 'success') {
-                jsCookie.setCookie('name', aName , 1);
-                $('#loginform').hide();
-                $('#title').text('登录成功！');
-                $('body').css('background','#fff url(assets/loading.gif) no-repeat center center');
-                setTimeout(function () {
-                    window.location.href='caselist.php';
-                },500);
-            }else{
-                alert ('用户名密码错误！');
-            };
-        });
-    });
-    document.onkeydown = function(){
-        var event = event||window.event;
-        if (event.keyCode == 13) {
-            //console.log(1);
-            $('#login').trigger('click');
-        }
-    }
-
-    //logout
-    $('#logout').on('click',function (e) {
-        e.preventDefault();
-        console.log(jsCookie.getCookie('auth_token'));
-        jsCookie.removeCookie('auth_token');
-        console.log(jsCookie.getCookie('auth_token'));
-        //window.location.href='admin.php';
-    });
 
     //case delete
     $('.btn-del').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
         var caseid = $this.data('cid');
-        $.post("del-case.php",{cid:caseid}, function(data){
+        $.post("post-del.php",{cid:caseid}, function(data){
             data = JSON.parse(data);//将字符串转换为json对象
             //console.log(data);
             if (data.msg) {
                 alert ('删除成功');
-                window.location.href='caselist.php';
+                window.location.href='postlist.php';
             };
         });
     })
@@ -125,18 +52,20 @@ $(document).ready(function(){
     //category add
     $('#btnAddcat').on('click',function (e) {
         e.preventDefault();
-        var cName = $('#cName').val(),
-            cNameE = $('#cNameE').val();
+        var tagName = $('#tag').val(),
+            tagLocal = $('#tagLocal').val();
 
-        if(cName && cNameE){
-            $.post("category-add.php",{
-                category:cName,
-                label:cNameE
+        if(tagName && tagLocal){
+            $.post("tag-add.php",{
+                tag: tagName,
+                tag_local: tagLocal
             }, function(data){
-                data = JSON.parse(data);//将字符串转换为json对象
+                data = JSON.parse(data); //将字符串转换为json对象
                 if(data.msg == 'success'){
                     alert('添加成功！');
-                    window.location = 'category.php';
+                    window.location = 'tags.php';
+                }else{
+                    alert('添加失败！');
                 };
             });
         }else{
@@ -144,42 +73,45 @@ $(document).ready(function(){
         }
     })
 
-    //category edit
+    //tag edit
     $('.btn-editcat').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
-        var updateIdval = $this.data('cid');
-        var cName = $('#cName'+updateIdval+'').val(),
-            cNameE = $('#cNameE'+updateIdval+'').val(),
-            cid = '';
+        var theTagId = $this.data('tid'),
+            theTagLocal = $('#theTagLocal'+theTagId).val(),
+            theTag = $('#theTag'+theTagId).val();
 
-        $.post("category-edit.php",{
-                updateId:updateIdval,
-                cid:'',
-                category:cName,
-                label:cNameE
+        $.post("tag-edit.php",{
+                updateId:theTagId,
+                deltId: "",
+                tag_local:theTagLocal,
+                tag:theTag
             }, function(data){
             data = JSON.parse(data);//将字符串转换为json对象
             console.log(data);
-            if (data.msg) {
+            if (data.msg == "success") {
                 alert ('修改成功');
-                window.location.href='category.php';
+                window.location.href='tags.php';
             };
         });
     })
 
-    //category del
+    //tag del
     $('.btn-delcat').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
-        var caseid = $this.data('cid'),
-            updateId;
-        $.post("category-edit.php?cid="+caseid+"",{cid:caseid,updateId:''}, function(data){
-            data = JSON.parse(data);//将字符串转换为json对象
-            console.log(data);
-            if (data.msg) {
+        var theTagId = $this.data('tid');
+
+        $.post("tag-edit.php",{
+            deltId:theTagId,
+            updateId:'',
+            tag_local:"",
+            tag:""
+        }, function(data){
+            data = JSON.parse(data);
+            if (data.msg == "success") {
                 alert ('删除成功');
-                window.location.href='category.php';
+                window.location.href='tags.php';
             };
         });
     })

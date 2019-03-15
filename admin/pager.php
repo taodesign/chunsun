@@ -1,6 +1,6 @@
 <?php
 
-$queryCaseAll = mysqli_query($con, "select * from cases");
+$queryCaseAll = mysqli_query($con, "select * from posts");
 $sum=mysqli_num_rows($queryCaseAll);
 
 if($sum % $perCount==0){
@@ -14,7 +14,7 @@ for ($i=1;$i<=$total;$i++) {
     if ($i==$p) {
         echo "$i ";
     }else{
-        echo "<a href='caselist.php?page=$i'>$i</a> ";
+        echo "<a href='postlist.php?page=$i'>$i</a> ";
     }
 }
 echo "</div>";

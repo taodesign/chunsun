@@ -1,13 +1,13 @@
 <?php
     require_once 'config.php';
-    include 'header-case.php';
+    include 'header-post.php';
 
-    $caseId =  $_GET['case'];
-    $queryCase = mysqli_query($con, "select * from posts WHERE id='$caseId'");
+    $caseId =  $_GET['id'];
+    $queryCase = mysqli_query($con, "SELECT * FROM posts WHERE id='$caseId'");
     while($row=mysqli_fetch_array($queryCase)){
         //query for tag local name
         $theTag = "${row["tag"]}";
-        $queryTag = mysqli_query($con, "select * from tags WHERE tag='$theTag'");
+        $queryTag = mysqli_query($con, "SELECT * FROM tags WHERE tag='$theTag'");
         $row2=mysqli_fetch_array($queryTag);
 
         //main

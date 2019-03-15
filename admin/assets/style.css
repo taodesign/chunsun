@@ -110,5 +110,8 @@ footer {margin-top: 20px; padding: 20px 0; border-top: 1px solid #ccc; text-alig
 .loginform div label {display: block; margin-bottom: 10px;}
 .loginform div input {width: 100%; padding: 0; text-indent: 5px; border-color: #ccc; line-height: 2em;-webkit-box-sizing:border-box; box-sizing:border-box;}
 .loginform button {width: 100%; line-height: 1.8em;-webkit-box-sizing:border-box; box-sizing:border-box;}
+.loginform .tips {
+    font-size: 14px; color: #f33;
+}
 
 .pager {text-align: right; height: 30px; border-top: 1px dashed #ccc; padding: 20px 20px 0;}

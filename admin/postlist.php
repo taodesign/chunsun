@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>添加项目 - 后台 - thepaper cases</title>
+    <title>管理 | 文章列表</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -24,7 +24,7 @@ if(isset($_GET['page'])){
 }
 $startCount = ($p-1)*$perCount;
 
-$queryCase = mysqli_query($con, "select * from cases order by id limit $startCount,$perCount");
+$queryCase = mysqli_query($con, "select * from posts order by id limit $startCount,$perCount");
 
 if (mysqli_num_rows($queryCase)){
     echo "<ul>";
@@ -32,14 +32,14 @@ if (mysqli_num_rows($queryCase)){
         //$imglist = explode(",","${row["imgsrc"]}");
 
         //query for label Chinese name
-        $category = "${row["label"]}";
-        $queryCategory = mysqli_query($con, "select * from category WHERE label='$category'");
+        $category = "${row["tag"]}";
+        $queryCategory = mysqli_query($con, "select * from tags WHERE tag='$category'");
         $row2=mysqli_fetch_array($queryCategory);
 
         //query case id
         $caseId = "${row["id"]}";
 
-        echo "<li><span>${row["id"]}</span>.<a href='add-case.php?case=$caseId'>${row2["label"]} &rsaquo; ${row["pname"]}</a> <a href='#' data-cid='$caseId' class='btn-del'>删除</a></li>";
+        echo "<li><span>${row["id"]}</span>.<a href='post.php?post=$caseId'>${row2["tag_local"]} &rsaquo; ${row["ptitle"]}</a> <a href='#' data-cid='$caseId' class='btn-del'>删除</a></li>";
     }
     echo "</ul>";
 }else{
