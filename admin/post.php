@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>管理 | 文章修改</title>
+    <title>管理 | 文章</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -11,20 +11,16 @@
 require 'tpl/nav.php';
 require 'tpl/topbar.php';
 
-if(!empty($_GET["case"])){
-    $query ="select * from posts where id =".$_GET['post']." limit 0,1 ";
+if(!empty($_GET["id"])){
+    $query ="select * from posts where id =".$_GET['id']." limit 0,1 ";
     $resource=mysqli_query($con, $query);
     $row=mysqli_fetch_array($resource);
-    echo '<input type="hidden" id="caseId" name="caseId" value="'.$_GET["case"].'">';
+    echo '<input type="hidden" id="postId" name="postId" value="'.$_GET["id"].'">';
 }else{
     $row = array(
-        'pTitle' => '',
-        'label' => '',
-        'purl' => '',
-        'pinfo' => '',
-        'pv' => '',
-        'pdesc' => '',
-        'cover' => ''
+        'ptitle' => '',
+        'tag' => '',
+        'article' => ''
     );
 }
 
@@ -33,7 +29,7 @@ if(!empty($_GET["case"])){
     <div class="formwrap addcase" id="addcase">
         <div class="row">
             <label for="">文章标题</label>
-            <input type="text" name="pTitle" id="pTitle" value="<?php echo $row['pTitle']; ?>" placeholder="文章标题">
+            <input type="text" name="ptitle" id="ptitle" value="<?php echo $row['ptitle']; ?>" placeholder="文章标题">
         </div>
         <div class="row">
             <label for="">文章分类</label>
@@ -55,12 +51,12 @@ if(!empty($_GET["case"])){
         <div class="row">
             <label for="">正文</label>
             <div class="editorwrap">
-                <textarea name="content" id="pDesc"><?php echo $row['pdesc']; ?></textarea>
+                <textarea name="content" id="theArticle"><?php echo $row['article']; ?></textarea>
             </div>
         </div>
         <div class="btnbar">
         <?php
-            if(!empty($_GET["case"])){
+            if(!empty($_GET["id"])){
                 echo '<button id="btnEdit">修改</button>';
             }else{
                 echo '<button id="btnAdd">提交</button>';
@@ -76,24 +72,17 @@ if(!empty($_GET["case"])){
     //submit
     $('#btnAdd').on('click',function (e) {
         e.preventDefault();
-        var pTitle = $('#pTitle').val(),
-            pTag = $('#pTag').val(),
-            pUrl = $('#pUrl').val(),
-            pInfo = $('#pInfo').val(),
-            pCover = $('#pCover').val();
+        var ptitle = $('#ptitle').val(),
+            pTag = $('#pTag').val()
+            theArticle = $("#theArticle").val();
 
-        var pDesc = editor.html();
-
-        if(pTitle){
-            $.post("post-add.inc.php",{
-                ptitle:pTitle,
+        if(ptitle){
+            $.post("post-add.php",{
+                ptitle:ptitle,
                 tag:pTag,
-                purl:pUrl,
-                pinfo:pInfo,
-                pdesc:pDesc,
-                cover:pCover
+                article:theArticle
             }, function(data){
-                data = JSON.parse(data);//将字符串转换为json对象
+                data = JSON.parse(data); //将字符串转换为json对象
                 if (data.msg=='success') {
                     alert('添加成功！');
                     //location.href = 'add-case.php';
@@ -105,27 +94,19 @@ if(!empty($_GET["case"])){
     })
 
     //edit
-    var caseId = $('#caseId').val();
+    var postId = $('#postId').val();
     $('#btnEdit').on('click',function (e) {
         e.preventDefault();
-        var pTitle = $('#pTitle').val(),
-            pTag = $('#pTag').val(),
-            pUrl = $('#pUrl').val(),
-            pInfo = $('#pInfo').val(),
-            pPv = $('#pPv').val(),
-            pCover = $('#pCover').val();
+        var ptitle = $('#ptitle').val(),
+            pTag = $('#pTag').val()
+            theArticle = $("#theArticle").val();
 
-        var pDesc = editor.html();
-
-        if(pTitle){
+        if(ptitle){
             $.post("post-edit.php",{
-                id:caseId,
-                ptitle:pTitle,
+                id: postId,
+                ptitle:ptitle,
                 tag:pTag,
-                purl:pUrl,
-                pinfo:pInfo,
-                pdesc:pDesc,
-                cover:pCover
+                article:theArticle
             }, function(data){
                 data = JSON.parse(data);//将字符串转换为json对象
                 if (data.msg == 'success') {

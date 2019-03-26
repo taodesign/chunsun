@@ -24,7 +24,7 @@ if(isset($_GET['page'])){
 }
 $startCount = ($p-1)*$perCount;
 
-$queryCase = mysqli_query($con, "select * from posts order by id limit $startCount,$perCount");
+$queryCase = mysqli_query($con, "SELECT * FROM posts ORDER BY id DESC LIMIT $startCount, $perCount");
 
 if (mysqli_num_rows($queryCase)){
     echo "<ul>";
@@ -37,9 +37,9 @@ if (mysqli_num_rows($queryCase)){
         $row2=mysqli_fetch_array($queryCategory);
 
         //query case id
-        $caseId = "${row["id"]}";
+        $postId = "${row["id"]}";
 
-        echo "<li><span>${row["id"]}</span>.<a href='post.php?post=$caseId'>${row2["tag_local"]} &rsaquo; ${row["ptitle"]}</a> <a href='#' data-cid='$caseId' class='btn-del'>删除</a></li>";
+        echo "<li><span>${row["id"]}</span>.<a href='post.php?id=$postId'>${row2["tag_local"]} &rsaquo; ${row["ptitle"]}</a> <a href='#' data-cid='$postId' class='btn-del'>删除</a></li>";
     }
     echo "</ul>";
 }else{

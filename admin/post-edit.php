@@ -1,7 +1,7 @@
 <?php
 require_once '../config.php';
 
-$updateCase="UPDATE posts set label='".$_POST["label"]."',pname='".$_POST["pname"]."',purl = '".$_POST["purl"]."',pinfo = '".$_POST["pinfo"]."',pv = '".$_POST["pv"]."',cover = '".$_POST["cover"]."',pdesc = '".$_POST["pdesc"]."' where id='".$_POST["id"]."'";
+$updateCase="UPDATE posts SET tag='".$_POST["tag"]."',ptitle='".$_POST["ptitle"]."',article = '".$_POST["article"]."',updateTime = NOW() WHERE id='".$_POST["id"]."'";
 
 mysqli_query($con, $updateCase);
 
