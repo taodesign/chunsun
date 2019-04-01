@@ -21,6 +21,7 @@ if($deltId){
 
     $jsArr = array('msg'=>'success','type'=> 'delt');
     echo json_encode($jsArr);
+    include "./tag-count.php";
 }
 
 mysqli_close($con);

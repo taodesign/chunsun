@@ -26,6 +26,10 @@ if (isset($_POST['submit-login'])) {
                 $_SESSION['uid'] = $row['id'];
                 $_SESSION['user'] = $row['username'];
 
+                /* update login time */
+                $updateUserLogin="UPDATE users SET logtime = NOW() WHERE id=".$row['id']."";
+                mysqli_query($con, $updateUserLogin);
+                /* redirect postlist */
                 header("Location: ./postlist.php");
                 exit();
             }else {

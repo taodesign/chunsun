@@ -5,12 +5,14 @@ ul{list-style: none;}
 li{margin: 0 0 10px;}
 
 .formwrap input[type=text],
+.formwrap input[type=email],
 .formwrap input[type=password]{
     border: 1px solid #999; font-size: 18px; padding: 5px;
 }
 .formwrap input[type=button] {font-size: 18px; padding: 3px 20px;}
 select {font-size: 16px; height:30px; width:240px;}
-button {background-color: #09c; border: 0 none; color: #fff; font-size: 18px; padding: 3px 10px;}
+button {background-color: #09c; border: 0 none; color: #fff; font-size: 18px; padding: 3px 10px; border-radius: 5px;}
+.textright {text-align: right;}
 
 nav {width: 160px; float: left; margin-right: 5px; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; background-color: #fff;}
 nav h1 {background-color: #eee; color: #666; font-weight: normal; padding: 5px 10px; margin:0; text-align: center;}
@@ -62,14 +64,13 @@ footer {margin-top: 20px; padding: 20px 0; border-top: 1px solid #ccc; text-alig
 .g-count{width:40px;}
 .g-del{float: right;}
 .editform .c-count {width:30px; text-align: center; font-weight: normal; font-size: 12px; line-height: 20px; border-color: #999; border-radius: 20px;}
-.btn-del, .btn-delcat {
+.btn-del, .btn-delcat, .btn-err {
     float: right;
     color: #fff;
     background-color: #d9534f;
     padding: 2px 12px;
-    font-size: 14px;
 }
-.btn-del:hover, .btn-delcat:hover {
+.btn-del:hover, .btn-delcat:hover, .btn-err {
     background-color:#c9302c;
     color:#ff0;
     text-decoration: none;
@@ -115,3 +116,6 @@ footer {margin-top: 20px; padding: 20px 0; border-top: 1px solid #ccc; text-alig
 }
 
 .pager {text-align: right; height: 30px; border-top: 1px dashed #ccc; padding: 20px 20px 0;}
+
+/* user */
+.userlist ul li span {display: inline-block; width: 20%;}

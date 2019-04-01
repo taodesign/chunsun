@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    //case delete
+    //post delete
     $('.btn-del').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
@@ -15,42 +15,8 @@ $(document).ready(function(){
         });
     })
 
-    //user delete
-    $('.btn-userdel').on('click',function (e) {
-        e.preventDefault();
-        var $this= $(this);
-        var userid = $this.data('cid');
-        $.post("user-del.php",{cid:userid}, function(data){
-            data = JSON.parse(data);//将字符串转换为json对象
-            //console.log(data);
-            if (data.msg == 'success') {
-                alert ('删除成功');
-                window.location.href='user.php';
-            }else{
-                alert ('创始人不能删除！');
-                window.location.href='user.php';
-            };
-        });
-    })
-
-    //user delete
-    $('.btn-resetpw').on('click',function (e) {
-        e.preventDefault();
-        var $this= $(this);
-        var userid = $this.data('cid');
-        var thepval = $this.prev().val();
-        $.post("user-resetpw.php",{cid:userid,userpw:thepval}, function(data){
-            data = JSON.parse(data);//将字符串转换为json对象
-            console.log(data);
-            if (data.msg == 'success') {
-                alert ('修改成功!');
-                window.location.href='user.php';
-            }
-        });
-    })
-
-    //category add
-    $('#btnAddcat').on('click',function (e) {
+    //tag add
+    $('#btnAddTag').on('click',function (e) {
         e.preventDefault();
         var tagName = $('#tag').val(),
             tagLocal = $('#tagLocal').val();
@@ -74,7 +40,7 @@ $(document).ready(function(){
     })
 
     //tag edit
-    $('.btn-editcat').on('click',function (e) {
+    $('#btnEditTag').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
         var theTagId = $this.data('tid'),
@@ -97,7 +63,7 @@ $(document).ready(function(){
     })
 
     //tag del
-    $('.btn-delcat').on('click',function (e) {
+    $('#btnDelCat').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
         var theTagId = $this.data('tid');
@@ -114,5 +80,45 @@ $(document).ready(function(){
                 window.location.href='tags.php';
             };
         });
+    })
+
+    //user delete
+    $('#btnDelUser').on('click',function (e) {
+        e.preventDefault();
+        var $this= $(this);
+        var theUserId = $this.data('tid');
+
+        $.post("user-del.php",{
+            deltId:theUserId
+        }, function(data){
+            data = JSON.parse(data);
+            if (data.msg == "success") {
+                alert ('删除成功');
+                window.location.href='user.php';
+            };
+        });
+    })
+
+    //tag del
+    $('#updatePassword').on('click', function (e) {
+        e.preventDefault();
+        var $pw1 = $("input[name='newpasswd1']").val(),
+            $pw2 = $("input[name='newpasswd2']").val();
+        console.log($pw1);
+        if ($pw1==$pw2) {
+            $.post("user-update-password.php",{
+                uid:$pw1,
+                newpasswd1:$pw1,
+                newpasswd2:$pw2
+            }, function(data){
+                data = JSON.parse(data);
+                if (data.msg == "success") {
+                    alert ('密码更改成功');
+                    window.location.href='user.php';
+                };
+            });
+        }else{
+            alert ('两次密码输入不一致！');
+        }
     })
 });

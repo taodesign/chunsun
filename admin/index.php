@@ -24,19 +24,19 @@
                 <button type="submit" name="submit-login">登录</button>
             </div>
         </form>
-        
+
 <?php
-	
-	if (isset($_GET['errmsg'])) {
-		$errmsg = $_GET['errmsg'];
-		if ($errmsg=="nouser") {
-			echo "<div class='tips'>*用户不存在</div>";
-		}else if($errmsg=="wrongpw"){
-			echo "<div class='tips'>*密码不正确</div>";
-		}
-	}
+
+    if (isset($_GET['errmsg'])) {
+        $errmsg = $_GET['errmsg'];
+        if ($errmsg=="nouser") {
+            echo "<div class='tips'>*用户不存在</div>";
+        }else if($errmsg=="wrongpw"){
+            echo "<div class='tips'>*密码不正确</div>";
+        }
+    }
 ?>
-        
+
     </div>
 </div>
 
