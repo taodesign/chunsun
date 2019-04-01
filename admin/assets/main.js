@@ -83,7 +83,7 @@ $(document).ready(function(){
     })
 
     //user delete
-    $('#btnDelUser').on('click',function (e) {
+    $('.btn-deluser').on('click',function (e) {
         e.preventDefault();
         var $this= $(this);
         var theUserId = $this.data('tid');

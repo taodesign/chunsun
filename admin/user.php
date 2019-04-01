@@ -34,7 +34,7 @@ if($_SESSION['uid'] == "1"){
     $query = mysqli_query($con, "SELECT * FROM users");
     while($row=mysqli_fetch_array($query)){
         if ($row["id"]!=="1") {
-            echo "<li><span>${row["username"]}</span><span>${row["regtime"]}</span><span>${row["logtime"]}</span><span><button data-tid='${row["id"]}' class='btn-err' id='btnDelUser'>删除</button></span></li>";
+            echo "<li><span>${row["username"]}</span><span>${row["regtime"]}</span><span>${row["logtime"]}</span><span><button data-tid='${row["id"]}' class='btn-err btn-deluser'>删除</button></span></li>";
         }
     }
 
